@@ -1,3 +1,4 @@
+
 CREATE TABLE COMPANY(
    ID INT PRIMARY KEY     NOT NULL,
    NAME           TEXT    NOT NULL,
@@ -8,7 +9,8 @@ CREATE TABLE COMPANY(
 
 --drop table  COMPANY;
 
-SELECT table_name
+SELECT *
 FROM information_schema.tables
-WHERE table_schema = 'public'
+--WHERE table_schema = 'public'
 ORDER BY table_name;
+

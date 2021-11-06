@@ -4,11 +4,11 @@ CREATE TABLE COMPANY(
    AGE            INT     NOT NULL,
    ADDRESS        CHAR(50),
    SALARY         REAL
-);
+) default charset utf8 COMMENT '';
 
 --drop table  COMPANY;
 
 SELECT table_name
 FROM information_schema.tables
-WHERE table_schema = 'public'
+--WHERE table_schema = 'public'
 ORDER BY table_name;
