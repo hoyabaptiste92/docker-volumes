@@ -107,7 +107,7 @@ You’ve just deployed a container that includes persistent storage, via a volum
 
 ## Database Volume
 
----
+
 
 <div style="float:right"> 
 
@@ -115,8 +115,13 @@ You’ve just deployed a container that includes persistent storage, via a volum
 
  </div>
 
-### Manually Add Named Volume
+### Named Volumes
 
+
+
+<details>
+  <summary>Manually Add Named Volume</summary>
+  
 >**myuser@mymachine:**~/projects/docker-volumes$ docker volume create mysql-test <br />
 mysql-test <br />
 >**myuser@mymachine:**~/projects/docker-volumes$ docker volume list <br />
@@ -140,52 +145,49 @@ mysql-test <br />
 >**myuser@mymachine:**~/projects/docker-volumes$ docker volume list <br /> 
 DRIVER    VOLUME NAME  <br /> 
 local     vscode <br /> 
+</details>
 
+
+---
 
 ### Create Image for MySQL with Named Volume
-Let’s say you want to create a volume for a database. You can do this by first deploying a MySQL database Docker container and instructing it to use a persistent storage volume named mysql-data. Do this with the command:
+
+Let’s say you want to create a volume for a database. You can do this by first deploying a **MySQL** database Docker container and instructing it to use a persistent storage volume named **mysql-data**. Do this with the command:
+
+
+<details>
+<summary>MySQL with Named Volume </summary>
+
+<p>
 
 ```bash
 
-docker run --name mysql-test -v mysql-data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=passwd -d mysql:latest
+docker run --name mysql-test -v mysql-data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=Pass2020! -p 3306:3306 -d mysql:latest
+
 
 ```
 
-In the above command, the -e switch informs docker what follows is an environment variable.
+**Note:**  In the above command, the -e switch informs docker what follows is an environment variable.
+</p>
+</details>  
 
-Access the bash prompt for the container with the command:
+---
+### Create Image for PostGreSQL with Named Volume
 
+To repeat this process for PostGreSQL. You can do this by first deploying a PostGreSQL database Docker container and instructing it to use a persistent storage volume named **postgres-data**. 
+
+
+<details>
+<summary>PostGreSQL with Named Volume </summary>
+
+<p>
 
 ```bash
 
-docker exec -it <IMAGE_ID> /bin/bash
+docker run -d --name dev-postgres -e POSTGRES_PASSWORD=Pass2020! -v postgres-data/:/var/lib/postgresql/data -p 5432:5432 postgres
 
 ```
 
-List out the contents of the container’s /var/lib/mysql directory with the command:
-
-
-```bash
-
-ls /var/lib/mysql
-
-```
-
-Make note of those contents and exit from the container with the command:
-
-
-```bash
-
-exit
-
-```
-
-Now, check the contents of the host’s mounted volume with the command:
-
-```bash
-
-sudo ls /var/lib/docker/volumes/mysql-data/_data
-
-```
-
-You should see the listing in both directories is the same 
+**Note:**  The default username is postgres; Use this when trying to connect
+</p>
+</details>  
