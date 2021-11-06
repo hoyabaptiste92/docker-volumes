@@ -184,7 +184,7 @@ To repeat this process for PostGreSQL. You can do this by first deploying a Post
 
 ```bash
 
-docker run -d --name dev-postgres -e POSTGRES_PASSWORD=Pass2020! -v postgres-data/:/var/lib/postgresql/data -p 5432:5432 postgres
+docker run -d --name dev-postgres -e POSTGRES_PASSWORD=Pass2020! -v postgres-data:/var/lib/postgresql/data -p 5432:5432 postgres
 
 ```
 
