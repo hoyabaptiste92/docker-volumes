@@ -75,24 +75,28 @@ docker attach <IMAGE_ID>
 
 Where ID is the first four characters of the deployed container. You should now find yourself at the bash prompt within the container. Issue the command ls / and you will see the /data directory added to the Ubuntu container.
 
->
->**myuser@mymachine:**~/projects/docker-volumes$ docker attach ed68de38675
-<br />
->**_root@ed68de38675e:_**/# ls
+```console
+~/projects/docker-volumes$ docker attach ed68de38675
+/# ls
+```
 
 ![image directories](./docs/img/img1.jpg)
 
 Let’s create a test file in that directory with the command:
 
->**_root@ed68de38675e:_**/# **touch** /data/test
+<pre>
+<strong>_root@ed68de38675e:_</strong>/# <strong>touch</strong> /data/test
+</pre>
 
 After creating this test file, _open another terminal window_ on the host machine and issue the command ls ~/container-data. You should see the test file within that directory
 
->**myuser@mymachine:** \~\$ cd ~/container-data <br />
->**myuser@mymachine:** ~/container-data$ ls <br />
-_testfile_ <br />
->**myuser@mymachine:**~/container-data$ <br />
->
+
+<pre>
+<strong>myuser@mymachine:</strong> \~\$ cd ~/container-data 
+<strong>myuser@mymachine:</strong> ~/container-data$ ls \
+_testfile_ 
+<strong>myuser@mymachine:</strong> ~/container-data$ 
+</pre>
 
 You’ve just deployed a container that includes persistent storage, via a volume on the host.
 
@@ -121,30 +125,32 @@ You’ve just deployed a container that includes persistent storage, via a volum
 
 <details>
   <summary>Manually Add Named Volume</summary>
-  
->**myuser@mymachine:**~/projects/docker-volumes$ docker volume create mysql-test <br />
-mysql-test <br />
->**myuser@mymachine:**~/projects/docker-volumes$ docker volume list <br />
-DRIVER    VOLUME NAME <br />
-local     mysql-test <br />
-local     vscode <br />
->**myuser@mymachine:**~/projects/docker-volumes$ docker volume inspect mysql-test  
+
+<pre>	
+<strong>myuser@mymachine:</strong>~/projects/docker-volumes$ docker volume create mysql-test 
+mysql-test 
+<strong>myuser@mymachine:</strong>~/projects/docker-volumes$ docker volume list 
+DRIVER    VOLUME NAME 
+local     mysql-test 
+local     vscode 
+<strong>myuser@mymachine:</strong>~/projects/docker-volumes$ docker volume inspect mysql-test  
  [
- <br />        {
- <br />            "CreatedAt": "2021-10-25T20:15:19Z",
- <br />            "Driver": "local",
- <br />            "Labels": {},
- <br />            "Mountpoint": "/var/lib/docker/volumes/mysql-test/_data",
- <br />            "Name": "mysql-test",
- <br />            "Options": {},
- <br />            "Scope": "local"
- <br />        }
- <br />    ]  <br />
->**myuser@mymachine:**~/projects/docker-volumes$ docker volume rm mysql-test <br /> 
-mysql-test <br /> 
->**myuser@mymachine:**~/projects/docker-volumes$ docker volume list <br /> 
-DRIVER    VOLUME NAME  <br /> 
-local     vscode <br /> 
+         {
+             "CreatedAt": "2021-10-25T20:15:19Z",
+             "Driver": "local",
+             "Labels": {},
+             "Mountpoint": "/var/lib/docker/volumes/mysql-test/_data",
+             "Name": "mysql-test",
+             "Options": {},
+             "Scope": "local"
+         }
+     ]  
+<strong>myuser@mymachine:</strong>~/projects/docker-volumes$ docker volume rm mysql-test  
+mysql-test  
+<strong>myuser@mymachine:</strong>~/projects/docker-volumes$ docker volume list  
+DRIVER    VOLUME NAME   
+local     vscode  
+</pre>
 </details>
 
 
