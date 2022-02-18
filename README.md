@@ -205,9 +205,22 @@ To repeat this process for MS SQL Server. You can do this by first deploying a M
 
 ```bash
 
-docker run -e 'ACCEPT_EULA=Y' -e 'MSSQL_SA_PASSWORD=Pass2020!' -v mssql-data:/var/opt/mssql -p 1433:1433 --name dev-mssql -h dev-mssql -d mcr.microsoft.com/mssql/server:2019-latest 
+docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=Pass2020!' -v mssql-data:/var/opt/mssql -p 1433:1433 --name dev-mssql -h dev-mssql -d mcr.microsoft.com/mssql/server:2019-latest 
 
 ```
-
+	
+Connect to the container
+	
+```bash
+docker exec -it dev-mssql /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P Pass2020!
+```
+Run the SQL commands (some DB tools need a database to exist before connecting)
+```console
+1> create database mydb
+2> go
+```
+	
+	
+[DockerHub - Microsoft SQL Server](https://hub.docker.com/_/microsoft-mssql-server)
 </p>
 </details>  
